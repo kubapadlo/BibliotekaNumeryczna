@@ -7,41 +7,7 @@
 #include <stdexcept> // Dla std::invalid_argument, std::runtime_error
 
 namespace NumLibCpp {
-
-/**
- * @brief Wykonuje aproksymację liniową metodą najmniejszych kwadratów (dla danych dyskretnych).
- *
- * Znajduje współczynniki `a` i `b` prostej `y = ax + b`, która najlepiej pasuje
- * do podanych punktów `(x_data[i], y_data[i])`.
- *
- * @param x_data Wektor współrzędnych x danych.
- * @param y_data Wektor współrzędnych y danych.
- * @return std::pair<double, double> Para (a, b) oznaczająca współczynniki prostej (nachylenie, wyraz wolny).
- * @throws std::invalid_argument Jeśli `x_data` i `y_data` mają różne rozmiary, są puste, lub mają mniej niż 2 punkty.
- * @throws std::runtime_error Jeśli nie można wykonać aproksymacji (np. wszystkie x_data są takie same).
- *
- * @example
- * @code
- * #include <NumLibCpp/approximation.h>
- * #include <iostream>
- * #include <vector>
- *
- * int main() {
- *     std::vector<double> x = {0, 1, 2, 3, 4};
- *     std::vector<double> y = {1, 3, 5, 7, 9}; // y = 2x + 1
- *     try {
- *         auto [a, b] = NumLibCpp::linear_least_squares(x, y);
- *         std::cout << "Aproksymacja liniowa: y = " << a << "x + " << b << std::endl; // Oczekiwane: a=2, b=1
- *     } catch (const std::exception& e) {
- *         std::cerr << "Blad: " << e.what() << std::endl;
- *     }
- *     return 0;
- * }
- * @endcode
- */
-std::pair<double, double> linear_least_squares(const std::vector<double>& x_data, const std::vector<double>& y_data);
-
-
+    
 /**
  * @brief Wykonuje aproksymację funkcji f(x) wielomianem stopnia 'degree' na przedziale [a, b]
  *        metodą najmniejszych kwadratów w sensie ciągłym.
