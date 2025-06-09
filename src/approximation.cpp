@@ -7,38 +7,6 @@
 
 namespace NumLibCpp {
 
-// Implementacja linear_least_squares (pozostaje bez zmian)
-std::pair<double, double> linear_least_squares(const std::vector<double>& x_data, const std::vector<double>& y_data) {
-    if (x_data.size() != y_data.size()) {
-        throw std::invalid_argument("Wektory x_data i y_data musza miec ten sam rozmiar.");
-    }
-    if (x_data.size() < 2) {
-        throw std::invalid_argument("Do aproksymacji liniowej potrzebne sa co najmniej 2 punkty.");
-    }
-
-    int n = x_data.size();
-    double sum_x = 0.0, sum_y = 0.0, sum_xy = 0.0, sum_x_sq = 0.0;
-
-    for (int i = 0; i < n; ++i) {
-        sum_x += x_data[i];
-        sum_y += y_data[i];
-        sum_xy += x_data[i] * y_data[i];
-        sum_x_sq += x_data[i] * x_data[i];
-    }
-
-    double denominator = static_cast<double>(n) * sum_x_sq - sum_x * sum_x; // Jawna konwersja n
-    if (std::abs(denominator) < std::numeric_limits<double>::epsilon()) {
-        throw std::runtime_error("Nie mozna wykonac aproksymacji: wszystkie punkty x sa takie same lub problem numeryczny.");
-    }
-
-    double a_coeff = (static_cast<double>(n) * sum_xy - sum_x * sum_y) / denominator;
-    double b_coeff = (sum_y * sum_x_sq - sum_x * sum_xy) / denominator;
-
-    return {a_coeff, b_coeff};
-}
-
-
-// Nowa implementacja polynomial_approximation
 std::vector<double> polynomial_approximation(
     std::function<double(double)> func_to_approx,
     double a,
