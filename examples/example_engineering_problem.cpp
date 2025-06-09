@@ -57,33 +57,5 @@ int main() {
     }
     std::cout << std::endl;
 
-
-    // 2. Aproksymacja danych pomiarowych (Moduł Younga)
-    std::cout << "2. Aproksymacja danych pomiarowych (Prawo Hooke'a: sigma = E * epsilon):" << std::endl;
-    std::vector<double> epsilon_data = {0.001, 0.002, 0.003, 0.004, 0.005}; // Odkształcenie [-]
-    std::vector<double> sigma_data_Pa = {200e6, 405e6, 590e6, 810e6, 1020e6}; // Naprężenie [Pa]
-    // Dla czytelności, użyjmy MPa
-    std::vector<double> sigma_data_MPa;
-    for(double s : sigma_data_Pa) sigma_data_MPa.push_back(s / 1e6);
-
-    std::cout << "   Dane pomiarowe (epsilon, sigma [MPa]):" << std::endl;
-    for(size_t i=0; i<epsilon_data.size(); ++i) {
-        std::cout << "     (" << epsilon_data[i] << ", " << sigma_data_MPa[i] << ")" << std::endl;
-    }
-
-    try {
-        // Aproksymujemy sigma = E * epsilon + b_offset
-        // x_data to epsilon, y_data to sigma_data_MPa
-        auto [E_approx_MPa, b_offset_MPa] = NumLibCpp::linear_least_squares(epsilon_data, sigma_data_MPa);
-        std::cout << "   Wynik aproksymacji: sigma = " << E_approx_MPa << " * epsilon + " << b_offset_MPa << " [MPa]" << std::endl;
-        std::cout << "   Przyblizony Modul Younga (E): " << E_approx_MPa << " MPa = " << E_approx_MPa / 1000.0 << " GPa" << std::endl;
-        std::cout << "   Przyblizony wyraz wolny (b_offset): " << b_offset_MPa << " MPa" << std::endl;
-        // Jeśli b_offset jest bliski zeru, model y=ax jest dobrym przybliżeniem.
-        // Oczekiwany E ~ 200 GPa = 200000 MPa
-    } catch (const std::exception& e) {
-        std::cerr << "   Blad aproksymacji: " << e.what() << std::endl;
-    }
-    std::cout << std::endl;
-
     return 0;
 }
