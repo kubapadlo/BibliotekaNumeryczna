@@ -57,11 +57,6 @@ NumLibCpp/
     cmake --build .
     ```
 
-4.  **(Opcjonalnie) Zainstaluj bibliotekę:**
-    ```bash
-    cmake --install . --prefix /sciezka/do/instalacji
-    ```
-
 ## Uruchamianie Testów
 
 Po zbudowaniu projektu, testy można uruchomić z katalogu `build`:
