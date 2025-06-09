@@ -10,8 +10,8 @@ Biblioteka implementuje następujące metody:
 
 *   **Rozwiązywanie układów równań liniowych:** Metoda eliminacji Gaussa.
 *   **Interpolacja:** Interpolacja Lagrange'a.
-*   **Aproksymacja:** Metoda najmniejszych kwadratów dla aproksymacji liniowej.
-*   **Całkowanie numeryczne:** Złożona metoda Simpsona.
+*   **Aproksymacja:**
+*   **Całkowanie numeryczne:** Metoda Simpsona.
 *   **Rozwiązywanie równań różniczkowych zwyczajnych:** Metoda Rungego-Kutty 4. rzędu (RK4).
 *   **Rozwiązywanie równań nieliniowych:** Metoda Krzywej Lini
 *   **Różniczkowanie numeryczne:** Metoda różnic centralnych.
